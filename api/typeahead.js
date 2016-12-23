@@ -17,7 +17,7 @@ module.exports = function(req, res) {
     return;
   }
 
-  // Request Github API for users
+  // Request Github API for user search
   try {
     response = sync.await(request({
       url: 'https://api.github.com/search/users',
@@ -54,13 +54,13 @@ module.exports = function(req, res) {
   }
 };
 
-// generates HTML for a single listing
+// generates HTML for a user search
 function formatUserList(users) {
 
-  // checks if listing is valid
+  // checks if listing has valid entries
   if(!users.login) {
-       return null;
-     }
+    return null;
+  }
 
   var html= 
   `<div style= 

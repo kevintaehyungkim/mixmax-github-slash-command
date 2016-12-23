@@ -5,16 +5,16 @@ var _ = require('underscore');
 
 // The API that returns the in-email representation.
 module.exports = function(req, res) {
-  var user = req.query.text.trim();
-  handleUser(user, req, res);
+  var listing = JSON.parse(req.query.text.trim());
+  handleUser(listing, req, res);
 };
 
-
-function handleUser(user, req, res) {
+function handleUser(term, req, res) {
   var response;
+
   try {
     response = sync.await(request({
-      url: 'https://api.github.com/users/kevintaehyungkim',
+      url: 'https://api.github.com/users/' + term.login,
       headers: {
         'user-agent': 'kevintaehyungkim'
       },
@@ -23,24 +23,29 @@ function handleUser(user, req, res) {
       timeout: 10 * 1000
     }, sync.defer()));
   } catch (e) {
-    res.status(500).send('Req Error');
+    res.status(500).send('Request Error');
     return;
   }
 
   var user = response.body;
 
+  //If user has no bio, replace it with his/her company info to display
+  if(!user.bio) {
+    user.bio = user.company;
+  }
+
   var html =
-  `<a style="text-decoration:none; color:inherit; display:block" href="${user.login}">
+  `<a style="text-decoration:none; color:inherit; display:block" >
     <div style=
-    "width:550px; 
-    height: 100px;
-    margin:5px; 
+    "height: 100px;
+    width:550px; 
     padding:10px; 
+    margin:5px; 
     border: 1px solid #99b0e1; 
     border-radius:2px;
-    font-family:proxima-nova, Avenir Next, Segoe UI, Calibri";
+    font-family:Avenir Next, Segoe UI, Calibri, Arial, sans-serif";
     >
-      <div style="display:inline-block; float:left; margin-right:10px">
+      <div style="float:left; margin-right:10px; display:inline-block">
         <img style="max-height:100px" src="${user.avatar_url}">
       </div>
 
@@ -52,19 +57,19 @@ function handleUser(user, req, res) {
       white-space: nowrap">
 
         <div style="width:100%; font-weight: 600; font-size: 1.6em;">
-          ${user.login}
+          ${user.login} (${user.name})
         </div>
 
-        <div style="width:100%; font-size: 1.2em;">
-          ${user.name}
+        <div style="width:100%; font-size: 1.1em;">
+          ${user.bio}
         </div>
         
         <div style="width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
           <font style="font-size: 0.9em; font-weight:normal">
-            ${user.bio}
+            ${user.name} has ${user.public_repos} repositories available.
           </font>
         </div>
-        <div style="font-family:proxima-nova, Avenir Next, Segoe UI, Calibri, Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 0.9em; font-weight:normal; color:#aab; margin-top:5px">
+        <div style="font-family:/gitAvenir Next, Segoe UI, Calibri, Arial, sans-serif; font-size: 0.8em; font-weight:normal; color:#aab; margin-top:3px">
           ${user.html_url}
         </div>
       </div>
