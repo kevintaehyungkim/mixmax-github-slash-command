@@ -5,19 +5,22 @@ var _ = require('underscore');
 
 // The Type Ahead API.
 module.exports = function(req, res) {
+
+  var response;
   var term = req.query.text.trim();
+
   if (!term) {
     res.json([{
-      title: '<i>(Search for Github Repository)</i>',
+      title: '<i>(Search for Users)</i>',
       text: ''
     }]);
     return;
   }
 
-  var response;
+  // Request Github API for users
   try {
     response = sync.await(request({
-      url: 'http://api.giphy.com/v1/gifs/search',
+      url: 'https://api.github.com/search/users',
       headers: {
         'user-agent': 'kevintaehyungkim'
       },
@@ -29,33 +32,56 @@ module.exports = function(req, res) {
       timeout: 10 * 1000
     }, sync.defer()));
   } catch (e) {
-    res.status(500).send('Error');
+    res.status(500).send('Request Error');
     return;
   }
 
-  if (response.statusCode !== 200 || !response.body || !response.body.data) {
-    res.status(500).send('Error');
+  // Check for error/empty responses
+  if (response.statusCode !== 200 || !response.body) {
+    res.status(500).send('Response Error');
     return;
   }
 
-  var results = _.chain(response.body.data)
-    .reject(function(image) {
-      return !image || !image.images || !image.images.fixed_height_small;
-    })
-    .map(function(image) {
-      return {
-        title: '<img style="height:75px" src="' + image.images.fixed_height_small.url + '">',
-        text: 'http://giphy.com/' + image.id
-      };
-    })
-    .value();
+  var results = response.body.items.map(formatUserList);
 
   if (results.length === 0) {
     res.json([{
-      title: '<i>(no results)</i>',
+      title: '<i>(No users found)</i>',
       text: ''
     }]);
   } else {
     res.json(results);
   }
 };
+
+// generates HTML for a single listing
+function formatUserList(users) {
+
+  // checks if listing is valid
+  if(!users.login) {
+       return null;
+     }
+
+  var html= 
+  `<div style= "display: flex; flex-flow: row nowrap; align-items: center;">
+    
+    <img style="height:34px" src="${users.avatar_url}">
+    
+    <div style=
+    " margin-left: 0.4rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;">
+      
+      <span style="font-weight: 400; font-size: 1.2em;">
+        ${users.login}
+      </span>
+
+    </div>
+  </div>`;
+
+  return {
+    title: html,
+    text: JSON.stringify(users),
+  };
+}
