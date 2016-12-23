@@ -12,14 +12,13 @@ how to use this example code in Mixmax.
 4. Compose an email in Gmail using Mixmax and type /github [Search]
 
 ###Parameters<br>
-![parameters](https://raw.githubusercontent.com/kevintaehyungkim/mixmax-github-slash-command/master/screenshots/parameters.png)
-<img src="https://raw.githubusercontent.com/kevintaehyungkim/mixmax-github-slash-command/master/screenshots/parameters.png" width="48">
+<img src="https://raw.githubusercontent.com/kevintaehyungkim/mixmax-github-slash-command/master/screenshots/parameters.png" width="600">
 
 ###Typeahead<br>
-![typeahead](https://raw.githubusercontent.com/kevintaehyungkim/mixmax-github-slash-command/master/screenshots/typeahead.png)
+<img src="https://raw.githubusercontent.com/kevintaehyungkim/mixmax-github-slash-command/master/screenshots/typeahead.png" width="600">
 
 ###Resolver<br>
-![resolver](https://raw.githubusercontent.com/kevintaehyungkim/mixmax-github-slash-command/master/screenshots/resolver.png)
+<img src="https://raw.githubusercontent.com/kevintaehyungkim/mixmax-github-slash-command/master/screenshots/resolver.png" width="600">
 
 To simulate locally how Mixmax calls the typeahead URL (to return a JSON list of typeahead results), run:
 
