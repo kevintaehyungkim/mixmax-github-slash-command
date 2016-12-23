@@ -12,7 +12,7 @@ how to use this example code in Mixmax.
 4. Compose an email in Gmail using Mixmax and type /github [Search]
 
 ###Parameters<br>
-<img src="https://raw.githubusercontent.com/kevintaehyungkim/mixmax-github-slash-command/master/screenshots/parameters.png" width="600">
+<img src="https://raw.githubusercontent.com/kevintaehyungkim/mixmax-github-slash-command/master/screenshots/parameters.png" width="400">
 
 ###Typeahead<br>
 <img src="https://raw.githubusercontent.com/kevintaehyungkim/mixmax-github-slash-command/master/screenshots/typeahead.png" width="600">
