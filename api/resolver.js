@@ -35,7 +35,7 @@ function handleUser(term, req, res) {
   }
 
   var html =
-  `<a style="text-decoration:none; color:inherit; display:block" >
+  `<a style="text-decoration:none; color:inherit; display:block" href="${user.html_url}"">
     <div style=
     "height: 100px;
     width:550px; 
@@ -60,16 +60,16 @@ function handleUser(term, req, res) {
           ${user.login} (${user.name})
         </div>
 
-        <div style="width:100%; font-size: 1.1em;">
+        <div style="width:100%; font-size: 1.2em;">
           ${user.bio}
         </div>
         
         <div style="width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
-          <font style="font-size: 0.9em; font-weight:normal">
+          <font style="font-size: 1.0em; font-weight:normal">
             ${user.name} has ${user.public_repos} repositories available.
           </font>
         </div>
-        <div style="font-family:/gitAvenir Next, Segoe UI, Calibri, Arial, sans-serif; font-size: 0.8em; font-weight:normal; color:#aab; margin-top:3px">
+        <div style="font-family: Avenir Next, Segoe UI, Calibri, Arial, sans-serif; font-size: 0.9em; font-weight:normal; color:#aab; margin-top:3px">
           ${user.html_url}
         </div>
       </div>
