@@ -9,7 +9,9 @@ how to use this example code in Mixmax.
 1. Install using `npm install`
 2. Run using `npm start`
 3. Add a Mixmax Slash Command in your Mixax dashboard using the following information. 
+
 ![typeahead](https://raw.githubusercontent.com/kevintaehyungkim/mixmax-github-slash-command/master/screenshots/parameters.png)
+
 4. Compose an email in Gmail using Mixmax and type /github [Search]
 
 ## What it should look like:
