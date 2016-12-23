@@ -22,8 +22,7 @@
     "express": "^4.12.3",
     "request": "^2.64.0",
     "synchronize": "^0.9.14",
-    "underscore": "^1.8.3",
-    "lodash": "^4.0.1"
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "nodemon": "^1.7.1"
