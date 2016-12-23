@@ -66,7 +66,8 @@ function formatUserList(users) {
   `<div style= 
   "display: flex; 
   flex-flow: row nowrap; 
-  align-items: center;">
+  align-items: center;"
+  >
     
     <img style="height:34px" src="${users.avatar_url}">
     
