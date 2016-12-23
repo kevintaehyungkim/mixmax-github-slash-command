@@ -13,6 +13,7 @@ how to use this example code in Mixmax.
 
 ###Parameters<br>
 ![parameters](https://raw.githubusercontent.com/kevintaehyungkim/mixmax-github-slash-command/master/screenshots/parameters.png)
+<img src="https://raw.githubusercontent.com/kevintaehyungkim/mixmax-github-slash-command/master/screenshots/parameters.png" width="48">
 
 ###Typeahead<br>
 ![typeahead](https://raw.githubusercontent.com/kevintaehyungkim/mixmax-github-slash-command/master/screenshots/typeahead.png)
